@@ -14,7 +14,7 @@ public class Departamento {
 	String nombre;
 	Empleado empleado;
 	
-	//Al crear un nuevo objeto empleado se enlaza con un departamento creado asi
+	//Al crear un nuevo objeto empleado se enlaza con este departamento 
 	//El metodo findDepartamento devuelve con este constructor
 	public Departamento(UUID id,String nombre) {
 		setId(id);

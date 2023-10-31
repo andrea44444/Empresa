@@ -10,8 +10,6 @@ import model.Departamento;
 import java.time.LocalDate;
 
 public class Menu {
-	//private static Departamento x = new Departamento();
-	//private static Empleado y = new Empleado();
 	
 	public static void main(String[] args) {
 		ManipularBaseDatos bd = new ManipularBaseDatos();

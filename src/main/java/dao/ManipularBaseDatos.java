@@ -124,6 +124,7 @@ public class ManipularBaseDatos {
 	 * Añade un nuevo empleado a la empresa
 	 * 
 	 * @param c
+	 * @param uuid
 	 * @return true si ha sido añadido, false en caso contrario
 	 */
 	public boolean addEmpleado(Empleado c, UUID idDepartamento) {
@@ -154,6 +155,7 @@ public class ManipularBaseDatos {
 	 * Añade un nuevo departamento a la empresa
 	 * 
 	 * @param c
+	 * @param uuid
 	 * @return true si ha sido añadido, false en caso contrario
 	 */
 	public boolean addDepartamento(Departamento c, UUID idEmpleado) {
@@ -181,7 +183,6 @@ public class ManipularBaseDatos {
 	 * Modificar un departamento de la empresa
 	 * 
 	 * @param c
-	 * @param id
 	 * @return true si ha sido modificado, false en caso contrario
 	 */
 
@@ -205,10 +206,9 @@ public class ManipularBaseDatos {
 	}
 
 	/**
-	 * Modificar un departamento de la empresa
+	 * Modificar un empleado de la empresa
 	 * 
 	 * @param c
-	 * @param id
 	 * @return true si ha sido modificado, false en caso contrario
 	 */
 
@@ -234,7 +234,7 @@ public class ManipularBaseDatos {
 	}
 
 	/**
-	 * Buscar empleado
+	 * Comprobar existencia empleado
 	 * 
 	 * @param uuid
 	 * @return Empleado con departamento null
@@ -260,7 +260,7 @@ public class ManipularBaseDatos {
 	}
 
 	/**
-	 * Buscar departamento
+	 * Comprobar existencia departamento
 	 * 
 	 * @param uuid
 	 * @return Departamento con empleado null
@@ -291,11 +291,16 @@ public class ManipularBaseDatos {
 		return ld;
 	}
 
+	/**
+	 * Eliminar empleado
+	 * 
+	 * @param uuid
+	 * @return true si elimina correctamente, false si no
+	 */
 	public boolean deleteEmpleado(String uuid) {
 		String sql = "";
 		try {
-			// Actualizar el campo uuidJefe a NULL en los departamentos donde el empleado es
-			// jefe
+			// Actualizar el campo uuidJefe a NULL en los departamentos donde el empleado es jefe
 			sql = "UPDATE departamentos SET uuidJefe = NULL WHERE uuidJefe = ?";
 			PreparedStatement updatePs = conn.prepareStatement(sql);
 			updatePs.setString(1, uuid);
@@ -313,6 +318,12 @@ public class ManipularBaseDatos {
 		}
 	}
 
+	/**
+	 * Eliminar departamento
+	 * 
+	 * @param uuid
+	 * @return true si elimina correctamente, false si no
+	 */
 	public boolean deleteDepartamento(String uuid) {
 		String sql = "";
 		try {
@@ -332,6 +343,12 @@ public class ManipularBaseDatos {
 		}
 	}
 
+	/**
+	 * Buscar empleado
+	 * 
+	 * @param String
+	 * @return objeto Empleado
+	 */
 	public Empleado selectEmpleado(String empleadoUUID) {
 
 		try {
@@ -361,7 +378,12 @@ public class ManipularBaseDatos {
 		return null; // Devuelve null si no se encontró al empleado
 	}
 
-	
+	/**
+	 * Buscar departamento 
+	 * 
+	 * @param String
+	 * @return objeto Departamento
+	 */	
 	public Departamento selectDepartamento(String departamentoUUID) {
 
 		try {
